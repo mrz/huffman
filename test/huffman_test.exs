@@ -18,7 +18,7 @@ defmodule HuffmanTest do
 
   test "weights", state do
     expected = %{"e" => 5, "d" => 6, "c" => 6, "b" => 7, "a" => 15}
-    actual = Huffman.calc_weights(state[:input])
+    actual   = Huffman.calc_weights(state[:input])
 
     assert expected == actual
   end
@@ -30,6 +30,12 @@ defmodule HuffmanTest do
     assert expected == actual
   end
 
+  test "encodes" do
+    expected    = "100011"
+    {_, actual} = Huffman.encode("test")
+
+    assert expected == actual
+  end
 
   test "decodes" do
     expected = "test"

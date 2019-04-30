@@ -63,7 +63,7 @@ defmodule Huffman do
       |> build_node_list
       |> build_tree
 
-    do_encode(input, List.first(tree), weights)
+    {weights, do_encode(input, List.first(tree), weights)}
   end
 
   defp do_encode(input, tree, weights, res \\ "")
