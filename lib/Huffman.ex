@@ -75,6 +75,33 @@ defmodule Huffman do
   end
 
   defp do_encode(<<>>, tree, weights, res), do: res
+
+  def decode(input, weights) do
+    tree =
+      sort(weights)
+      |> build_node_list
+      |> build_tree
+
+    do_decode(input, List.first(tree), List.first(tree))
+  end
+
+  defp do_decode(input, tree, node)
+  defp do_decode(input, tree, %TreeNode{left: nil, right: nil, char: char} = node) do
+    char <> do_decode(input, tree, tree)
+  end
+
+  defp do_decode(<<"1", rest::binary>>, tree, node) do
+    do_decode(rest, tree, node.right)
+  end
+
+  defp do_decode(<<"0", rest::binary>>, tree, node) do
+    do_decode(rest, tree, node.left)
+  end
+
+  defp do_decode(<<>>, tree, node) do
+    ""
+  end
+
 end
 
 # as = replicate('a', 5)

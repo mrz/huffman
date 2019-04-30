@@ -25,9 +25,17 @@ defmodule HuffmanTest do
 
   test "sorts" do
     expected = [{"e", 5}, {"d", 6}, {"c", 6}, {"b", 7}, {"a", 15}]
-    actual = Huffman.sort(%{"e" => 5, "d" => 6, "c" => 6, "b" => 7, "a" => 15})
+    actual   = Huffman.sort(%{"e" => 5, "d" => 6, "c" => 6, "b" => 7, "a" => 15})
 
     assert expected == actual
   end
 
+
+  test "decodes" do
+    expected = "test"
+    weights  = Huffman.calc_weights("test")
+    actual   = Huffman.decode("100011", weights)
+
+    assert expected == actual
+  end
 end
